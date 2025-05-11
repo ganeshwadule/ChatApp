@@ -3,7 +3,7 @@ import pfp from "../../public/pfp.jpeg";
 import SendICon from "../icons/SendICon";
 import Message from "./Message";
 
-const ChatMessages = ({currentUser}) => {
+const ChatMessages = ({currentUser}:{currentUser:string}) => {
   const [messages, setMessages] = useState<string[]>([
     "hii",
     "hello",
@@ -21,7 +21,7 @@ const ChatMessages = ({currentUser}) => {
 
   const sendMessage = ()=>{
     console.log(inputRef.current?.value)
-    setMessages(prev => [...prev,inputRef.current?.value])
+    setMessages(prev => [...prev,inputRef.current?.value ?? ""])
   }
   return (
     <div className="flex h-full w-[60%]  border-[#d1fae6] border flex-col shadow-md">
@@ -35,6 +35,7 @@ const ChatMessages = ({currentUser}) => {
         <div className="flex flex-col items-end">
           {messages.map((message, index) => (
             <Message key={index} message={message} />
+
           ))}
         </div>
       </div>
